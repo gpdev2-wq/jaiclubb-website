@@ -1,13 +1,20 @@
 /* Jai Club — minimal, dependency-free JS */
 (() => {
+  const runWhenIdle = (fn) => {
+    const schedule = () => {
+      if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout: 2500 });
+      else setTimeout(fn, 200);
+    };
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+  };
+
   // ---------- Year ----------
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
   });
 
   // ---------- Login / Register buttons -> external redirect ----------
-  // Owner-requested: header Log in / Register buttons open the partner sign-up
-  // page in a new tab instead of the local demo modal.
   const PARTNER_URL = 'https://www.jaiclub25.com/#/register?invitationCode=774714713647';
   document.querySelectorAll('[data-open-modal]').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -17,10 +24,8 @@
     }, true);
   });
 
-  // ---------- Language switcher (auto-injected EN <-> HI) ----------
-  // Adds a prominent globe button to every page header.
-  // Maps known EN <-> HI page pairs; falls back to /hi/ or / homepage.
-  (function injectLangSwitch() {
+  // ---------- Language switcher (deferred — not needed for first paint) ----------
+  function injectLangSwitch() {
     const enToHi = {
       '/': '/hi/',
       '/index.html': '/hi/',
@@ -69,14 +74,10 @@
     } else {
       navInner.appendChild(link);
     }
-  })();
+  }
 
-  // ---------- Star rating widget (real shared ratings via counterapi.dev) ----------
-  // We store 5 separate counters (rating-1 ... rating-5) under a unique namespace.
-  // Every vote increments exactly one counter. Average is computed from all 5.
-  // localStorage prevents the same browser from voting twice. If the backend is
-  // unreachable, the widget falls back gracefully (local-only vote display).
-  (function ratingWidget() {
+  // ---------- Star rating widget (deferred — API calls after load) ----------
+  function ratingWidget() {
     const footerContainer = document.querySelector('.site-footer .container');
     if (!footerContainer) return;
     if (footerContainer.querySelector('.site-rating')) return; // already exists
@@ -105,10 +106,12 @@
     const status = card.querySelector('.rating-status');
 
     const renderStars = (filledTo, locked) => {
-      stars.forEach((s, i) => {
-        s.classList.toggle('filled', i < filledTo);
-        s.setAttribute('aria-checked', (i + 1) === filledTo ? 'true' : 'false');
-        s.disabled = !!locked;
+      requestAnimationFrame(() => {
+        stars.forEach((s, i) => {
+          s.classList.toggle('filled', i < filledTo);
+          s.setAttribute('aria-checked', (i + 1) === filledTo ? 'true' : 'false');
+          s.disabled = !!locked;
+        });
       });
     };
 
@@ -181,10 +184,10 @@
 
     if (userVote) renderStars(userVote, true);
     loadAggregate();
-  })();
+  }
 
-  // ---------- Scroll-to-top button (auto-injected on every page) ----------
-  (function scrollTopBtn() {
+  // ---------- Scroll-to-top button (deferred) ----------
+  function scrollTopBtn() {
     if (document.querySelector('.scroll-top')) return;
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -202,7 +205,13 @@
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  })();
+  }
+
+  runWhenIdle(() => {
+    injectLangSwitch();
+    ratingWidget();
+    scrollTopBtn();
+  });
 
   // ---------- Mobile nav ----------
   const header = document.querySelector('.site-header');

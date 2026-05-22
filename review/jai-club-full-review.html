@@ -30,7 +30,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght;600;700&family=Merriweather:wght;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght;600;700&family=Merriweather:wght;900&display=swap" /></noscript>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/logo-192.png" />
@@ -85,7 +86,7 @@
   <header class="site-header">
     <div class="container nav-inner">
       <a href="../index.html" class="brand">
-        <img src="../assets/logo.png" alt="" width="36" height="36" class="brand-mark" />
+        <img src="../assets/logo-nav.webp" alt="" width="36" height="36" class="brand-mark" />
         <span><span class="brand-name">Jai Club</span><span class="brand-sub">Honest · Independent · Educational</span></span>
       </a>
       <nav class="nav-links">
@@ -165,7 +166,7 @@
         <p>The brand "Jai Club" is one of dozens of similarly-styled apps that share visual design language, game mechanics and backend infrastructure with platforms like 91 Club, Daman Games, Tashan Win, BDG Win, Big Daddy and others. In our investigation (<a href="../blog/is-jai-club-real-or-fake.html">read it here</a>), the underlying technology stack and even some payment routing appear to be shared across this category. That doesn't make every app fraudulent — but it does mean reviews of one are usually relevant to the others.</p>
 
         <figure class="screenshot-mobile">
-          <img src="../assets/images/screens/jaiclub-promotions-screen.webp" alt="Jai Club promotions screen showing welcome bonus, weekly cashback, and referral campaign cards" loading="lazy" width="1080" height="1920">
+          <img src="../assets/images/screens/jaiclub-promotions-screen.webp" alt="Jai Club promotions screen showing welcome bonus, weekly cashback, and referral campaign cards" loading="lazy" decoding="async" width="1080" height="1920">
           <figcaption>The Jai Club promotions tab showing the primary bonus categories.</figcaption>
         </figure>
 
@@ -222,7 +223,7 @@
         </ol>
 
         <figure class="screenshot-mobile">
-          <img src="../assets/images/screens/jaiclub-register-screen.webp" alt="Jai Club registration screen showing phone number, OTP and password fields with the optional invitation code input" loading="lazy" width="1080" height="1920">
+          <img src="../assets/images/screens/jaiclub-register-screen.webp" alt="Jai Club registration screen showing phone number, OTP and password fields with the optional invitation code input" loading="lazy" decoding="async" width="1080" height="1920">
           <figcaption>Registration flow: phone number → OTP → password → optional referral code.</figcaption>
         </figure>
 
@@ -299,7 +300,7 @@
         <p>We made four deposits during testing — all UPI, all credited within 2–7 minutes. The UPI ID shown for payment changes every few days; this is a workaround for banks de-listing repeat-offender VPAs. The receiving merchant name in your UPI app is typically a generic, unrelated-looking business name (often something like "<em>Global Trading LLP</em>" or "<em>Digital Services Pvt Ltd</em>"), <strong>not</strong> "Jai Club." This is a recurring observation across the category.</p>
 
         <figure class="screenshot-mobile">
-          <img src="../assets/images/screens/jaiclub-deposit-upi.webp" alt="Jai Club deposit page showing UPI payment options with rotating VPAs and merchant aggregator branding" loading="lazy" width="1080" height="1920">
+          <img src="../assets/images/screens/jaiclub-deposit-upi.webp" alt="Jai Club deposit page showing UPI payment options with rotating VPAs and merchant aggregator branding" loading="lazy" decoding="async" width="1080" height="1920">
           <figcaption>The deposit page typically shows multiple UPI options; the receiving merchant name is rarely "Jai Club."</figcaption>
         </figure>
 

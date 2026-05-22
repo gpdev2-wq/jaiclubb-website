@@ -49,7 +49,7 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
   font-size: 17px;
   line-height: 1.65;
   color: var(--text);
@@ -68,7 +68,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Typography ---------- */
 h1, h2, h3, h4 {
-  font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+  font-family: Georgia, 'Times New Roman', 'Merriweather', serif;
   line-height: 1.25;
   color: var(--text);
   margin: 0 0 0.5em;
@@ -556,6 +556,10 @@ a[href^="http"]:not([href*="jaiclubb.app"]):not(.no-ext):hover::after { opacity:
 
 /* ---------- Cards / Grids ---------- */
 .section { padding: 60px 0; }
+.section:not(.hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
+}
 .section-alt { background: var(--bg-soft); }
 .section-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
 .section-head h2 { margin-top: 0; }
