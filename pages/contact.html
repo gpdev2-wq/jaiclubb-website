@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Contact — Jaiclubb.app</title>
+  <meta name="description" content="Contact Jaiclubb.app — share your story, ask a question, or send corrections. Free, confidential, no judgement." />
+  <link rel="canonical" href="https://jaiclubb.app/pages/contact.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/logo-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
+</head>
+<body>
+  <a href="#main" class="skip">Skip</a>
+  <div class="top-bar">⚠ Educational review site.</div>
+  <header class="site-header"><div class="container nav-inner"><a href="../index.html" class="brand"><img src="../assets/logo.png" alt="" width="36" height="36" class="brand-mark"/><span><span class="brand-name">Jai Club</span><span class="brand-sub">Honest · Independent</span></span></a><nav class="nav-links"><a href="../review/jai-club-full-review.html">Full Guide</a><a href="../index.html#games">Games</a><a href="../index.html#guides">Guides</a><a href="../blog/index.html">Blog</a><a href="../faq.html">FAQ</a></nav><div class="nav-cta"><button class="btn btn-ghost" data-open-modal="login">Log in</button><button class="btn btn-primary" data-open-modal="register">Register</button></div><button class="nav-toggle"><span></span><span></span><span></span></button></div></header>
+
+  <main id="main">
+    <header class="article-head"><div class="container" style="max-width:820px;">
+      <nav class="breadcrumbs"><a href="../index.html">Home</a><span class="sep">›</span><span>Contact</span></nav>
+      <h1>Get in Touch.</h1>
+      <p class="lead">Got a question, a correction, a story, or feedback? Drop us a line. We read every message.</p>
+    </div></header>
+
+    <div class="article-body"><div class="prose-wrap">
+
+      <h2>Email us</h2>
+      <ul>
+        <li><strong>General/Editorial:</strong> <a href="mailto:hello@jaiclubb.app">hello@jaiclubb.app</a></li>
+        <li><strong>Reader stories:</strong> <a href="mailto:stories@jaiclubb.app">stories@jaiclubb.app</a> (anonymity respected — we never publish without permission)</li>
+        <li><strong>Press & journalists:</strong> <a href="mailto:press@jaiclubb.app">press@jaiclubb.app</a></li>
+        <li><strong>Corrections:</strong> <a href="mailto:corrections@jaiclubb.app">corrections@jaiclubb.app</a></li>
+        <li><strong>Legal/DMCA:</strong> <a href="mailto:legal@jaiclubb.app">legal@jaiclubb.app</a></li>
+      </ul>
+
+      <h2>Send a message</h2>
+      <form id="contactForm" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:14px;">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--text-mute);">Your name<input type="text" name="name" required style="padding:11px 14px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg);color:var(--text);font:inherit;"/></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--text-mute);">Email<input type="email" name="email" required style="padding:11px 14px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg);color:var(--text);font:inherit;"/></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--text-mute);">Topic
+          <select name="topic" required style="padding:11px 14px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg);color:var(--text);font:inherit;">
+            <option value="">Choose…</option>
+            <option>Question</option>
+            <option>Feedback</option>
+            <option>Reader story</option>
+            <option>Correction</option>
+            <option>Press</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--text-mute);">Message<textarea name="msg" required rows="6" style="padding:11px 14px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg);color:var(--text);font:inherit;resize:vertical;"></textarea></label>
+        <button class="btn btn-primary" type="submit">Send message</button>
+        <p class="form-msg small"></p>
+      </form>
+
+      <div class="callout info" style="margin-top:30px;">
+        <strong>Privacy note</strong>
+        <p>We don't publish reader emails. We don't share data. If you share a story, we keep your identity confidential unless you specifically tell us otherwise in writing.</p>
+      </div>
+
+      <div class="callout warn">
+        <strong>We can't help with…</strong>
+        <p>We are not Jai Club. We can't recover lost funds, reset your password, contact their support team for you, or change a withdrawal decision. For those issues you'll need to contact Jai Club directly (acknowledging the limitations described throughout this site).</p>
+      </div>
+
+    </div></div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="disclaimer-foot">⚠ Educational only.</div><div class="footer-bottom"><span>© <span data-year></span> Jaiclubb.app</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></div></footer>
+  <div class="modal" id="authModal" role="dialog"><div class="modal-card"><button class="modal-close" data-close-modal>×</button><div class="modal-tabs"><button class="active" data-tab="login">Log in</button><button data-tab="register">Register</button></div><form class="auth-form" id="loginForm" data-form="login"><label>Email <input type="email" name="email" required/></label><label>Password <input type="password" name="password" required minlength="6"/></label><button class="btn btn-primary btn-block">Log in</button><p class="form-msg"></p></form><form class="auth-form hidden" id="registerForm" data-form="register"><label>Username <input type="text" name="username" required minlength="3"/></label><label>Email <input type="email" name="email" required/></label><label>Password <input type="password" name="password" required minlength="6"/></label><button class="btn btn-primary btn-block">Create account</button><p class="form-msg"></p></form></div></div>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const m = e.target.querySelector('.form-msg');
+      m.textContent = "Thanks — your message is queued. (Connect to a real form provider like Formspree or your backend.)";
+      m.style.color = "var(--good)";
+      e.target.reset();
+    });
+  </script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

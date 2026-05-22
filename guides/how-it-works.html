@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <title>How Jai Club Actually Works — Technical & Business Mechanics Explained</title>
+  <meta name="description" content="Inside Jai Club: how the app, RNG server, payment processing, KYC and withdrawal pipeline actually work. The full technical and business mechanics explained in plain English." />
+  <meta name="keywords" content="how jai club works, jai club technical, jai club rng, jai club payment, jai club withdrawal process" />
+  <link rel="canonical" href="https://jaiclubb.app/guides/how-it-works.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How Jai Club Actually Works" />
+  <meta property="og:description" content="Inside the app — RNG, payments, KYC, withdrawal pipeline." />
+  <meta property="og:url" content="https://jaiclubb.app/guides/how-it-works.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/logo-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
+</head>
+<body>
+  <a href="#main" class="skip">Skip</a>
+  <div class="top-bar">⚠ Educational guide. <a href="../pages/disclaimer.html" style="color:inherit;text-decoration:underline;">Disclaimer</a></div>
+  <header class="site-header"><div class="container nav-inner"><a href="../index.html" class="brand"><img src="../assets/logo.png" alt="" width="36" height="36" class="brand-mark"/><span><span class="brand-name">Jai Club</span><span class="brand-sub">Honest · Independent</span></span></a><nav class="nav-links"><a href="../review/jai-club-full-review.html">Full Guide</a><a href="../index.html#games">Games</a><a href="../index.html#guides">Guides</a><a href="../blog/index.html">Blog</a><a href="../faq.html">FAQ</a></nav><div class="nav-cta"><button class="btn btn-ghost" data-open-modal="login">Log in</button><button class="btn btn-primary" data-open-modal="register">Register</button></div><button class="nav-toggle"><span></span><span></span><span></span></button></div></header>
+
+  <article id="main">
+    <header class="article-head"><div class="container" style="max-width:820px;">
+      <nav class="breadcrumbs"><a href="../index.html">Home</a><span class="sep">›</span><a href="../index.html#guides">Guides</a><span class="sep">›</span><span>How It Works</span></nav>
+      <span class="badge primary">★ Educational guide</span>
+      <h1>How Jai Club Actually Works — A Technical & Business Walkthrough.</h1>
+      <p class="lead">Most users see only the colourful frontend. This guide walks you through what happens behind the screen — from RNG servers and payment routing to KYC pipelines and the economics of withdrawal rejection.</p>
+      <div class="article-meta"><span>📅 Updated May 2026</span><span>⏱ 10 min read</span></div>
+    </div></header>
+
+    <div class="article-body"><div class="prose-wrap">
+
+      <figure class="screenshot-mobile"><img src="../assets/images/screens/jaiclub-wallet-screen.webp" alt="Jai Club wallet screen showing the deposit, withdrawal and balance management flow that drives the app's economy" loading="eager" width="1080" height="1920"><figcaption>The Jai Club wallet — the centre of the app's deposit, balance and withdrawal flow.</figcaption></figure>
+
+      <nav class="toc"><h4>Contents</h4><ol>
+        <li><a href="#stack">The app & technology stack</a></li>
+        <li><a href="#rng">The RNG — what generates the result</a></li>
+        <li><a href="#deposit-flow">The deposit pipeline</a></li>
+        <li><a href="#wallet">How your wallet balance works</a></li>
+        <li><a href="#kyc">KYC: when, why, what they collect</a></li>
+        <li><a href="#withdrawal-flow">Withdrawal pipeline</a></li>
+        <li><a href="#economics">The business economics</a></li>
+      </ol></nav>
+
+      <h2 id="stack">1. The app & technology stack</h2>
+      <p>Jai Club appears to be built on a fairly standard mobile-gaming stack: a web frontend (React or similar) wrapped in a thin Android shell, with a Node.js/PHP backend handling game logic and a separate payment microservice. The same underlying codebase appears to power many "club" branded apps (91 Club, BDG Win, Daman Games), with cosmetic re-skinning at the frontend layer. Servers are typically hosted in Singapore, Hong Kong or Eastern Europe — outside Indian jurisdiction.</p>
+
+      <h2 id="rng">2. The RNG — what generates the result</h2>
+      <p>Every game outcome (Wingo color, K3 dice, Aviator multiplier, Mines bomb layout) is produced by a server-side <strong>Random Number Generator (RNG)</strong>. The RNG runs entirely on the operator's servers — there is no third-party audit, no "Provably Fair" cryptographic commitment scheme visible to the player (a feature genuine blockchain crash games offer). The lack of audit means players have no way to verify that outcomes are actually uniformly random and not, for example, slightly biased against the player after large wins.</p>
+
+      <p>To be clear: we have no direct evidence of result manipulation. The pure statistical edge already in the payout tables is sufficient to explain operator profits. But the absence of independent audit means you're trusting the operator on faith.</p>
+
+      <h2 id="deposit-flow">3. The deposit pipeline</h2>
+      <p>What happens when you UPI ₹500 to Jai Club:</p>
+      <ol>
+        <li>You tap "Deposit" → choose ₹500 → UPI ID is displayed.</li>
+        <li>You send ₹500 via Google Pay / PhonePe to that UPI ID.</li>
+        <li>The receiving VPA belongs to a payment aggregator (P2A/P2P) — not directly to "Jai Club."</li>
+        <li>Jai Club's backend either polls a webhook or uses UTR-matching to identify your payment.</li>
+        <li>Within 2–10 minutes, your in-app wallet shows ₹500 credited.</li>
+        <li>The aggregator settles the funds to Jai Club's operating account (often abroad) periodically.</li>
+      </ol>
+
+      <h2 id="wallet">4. How your wallet balance works</h2>
+      <p>Your "balance" displayed in the app is a number in a database — not real money sitting in your name in a bank account. Until and unless you successfully withdraw, that balance has no legal standing. This is important: <strong>your wallet number is the operator's IOU to you, not your funds in escrow.</strong> Indian financial regulations explicitly require licensed entities to keep client funds in segregated accounts. Jai Club has no such obligation.</p>
+
+      <h2 id="kyc">5. KYC: when, why, what they collect</h2>
+      <p>KYC (Know Your Customer) is triggered when:</p>
+      <ul>
+        <li>Your cumulative withdrawals exceed ~₹5,000–₹10,000 (varies)</li>
+        <li>Your account is flagged for "unusual activity" (often a big win)</li>
+        <li>You request to update your linked bank account</li>
+      </ul>
+      <p>They typically ask for: PAN card photo (front + back), bank statement (last 30 days), sometimes Aadhaar, sometimes a live selfie. Once submitted, processing typically takes 24-72 hours — during which your withdrawal is on hold.</p>
+
+      <div class="callout warn">
+        <strong>The KYC delay tactic:</strong>
+        <p>KYC is legitimate in principle, but on grey-market apps it often functions as a withdrawal delay tactic. Common rejection reasons we documented: "name mismatch" (between PAN and bank), "blurry image," "selfie doesn't match" (with no recourse to clarify). These rejections often coincide with withdrawal requests.</p>
+      </div>
+
+      <h2 id="withdrawal-flow">6. Withdrawal pipeline</h2>
+      <ol>
+        <li>You request withdrawal of ₹X to your linked bank account.</li>
+        <li>System checks: minimum balance met? wagering requirements completed? KYC done? bonus locked?</li>
+        <li>If any check fails: rejection or KYC trigger.</li>
+        <li>If all pass: queued for manual review (often) or auto-paid (small amounts).</li>
+        <li>Settlement via the same aggregator network used for deposits, in reverse.</li>
+        <li>Funds arrive 4 hours to 5 days later.</li>
+      </ol>
+      <p>The critical insight: <strong>"manual review" is the friction point.</strong> Small auto-paid withdrawals create the illusion of reliability; manually-reviewed large ones disproportionately stall or reject. This pattern is consistent across our testing and the user reports we collected.</p>
+
+      <h2 id="economics">7. The business economics</h2>
+      <p>The math from the operator's perspective:</p>
+      <ul>
+        <li><strong>House edge</strong> of 3-10% × total turnover = gross gaming revenue (GGR)</li>
+        <li>Minus operating costs: aggregator fees (~2-4% per transaction in & out), servers, support staff (often small offshore teams)</li>
+        <li>Minus marketing (Telegram channel commissions, influencer payments)</li>
+        <li>Minus bonuses paid out</li>
+        <li>= operator net profit</li>
+      </ul>
+      <p>For a platform processing ₹10 crore monthly turnover (modest scale for a "club" app), even a 5% net margin = ₹50 lakh/month profit. With aggressive withdrawal-rejection tactics (effectively converting deposits into 100% retained revenue), real margins can be much higher. The structural incentive to deny withdrawals is therefore very strong.</p>
+
+      <div class="callout info">
+        <strong>The takeaway:</strong>
+        <p>Understanding the business model helps you see why withdrawal friction isn't a bug — it's a feature. The operator is not your bank. There is no regulator forcing the operator to pay you. If your withdrawal is denied, you have no leverage. Play accordingly: withdraw small, withdraw often, and never let your balance accumulate.</p>
+      </div>
+
+      <div class="related"><h3>Continue reading</h3><div class="related-list">
+        <a href="../guides/safety-tips.html">Safety Tips<span>14 rules to minimise loss</span></a>
+        <a href="../guides/red-flags.html">22 Red Flags<span>Spot warning signs</span></a>
+        <a href="../review/jai-club-full-review.html">Full Guide<span>The complete deep-dive</span></a>
+        <a href="../faq.html">FAQ<span>Quick answers to common questions</span></a>
+      </div></div>
+
+    </div></div>
+  </article>
+
+  <footer class="site-footer"><div class="container"><div class="disclaimer-foot">⚠ Educational guide. Not affiliated with Jai Club.</div><div class="footer-bottom"><span>© <span data-year></span> Jaiclubb.app</span><span><a href="../pages/privacy.html">Privacy</a> · <a href="../pages/terms.html">Terms</a></span></div></div></footer>
+  <div class="modal" id="authModal" role="dialog"><div class="modal-card"><button class="modal-close" data-close-modal>×</button><div class="modal-tabs"><button class="active" data-tab="login">Log in</button><button data-tab="register">Register</button></div><form class="auth-form" id="loginForm" data-form="login"><label>Email <input type="email" name="email" required/></label><label>Password <input type="password" name="password" required minlength="6"/></label><button class="btn btn-primary btn-block">Log in</button><p class="form-msg"></p></form><form class="auth-form hidden" id="registerForm" data-form="register"><label>Username <input type="text" name="username" required minlength="3"/></label><label>Email <input type="email" name="email" required/></label><label>Password <input type="password" name="password" required minlength="6"/></label><button class="btn btn-primary btn-block">Create account</button><p class="form-msg"></p></form></div></div>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

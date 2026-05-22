@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage (EN + HI alternates) -->
+  <url>
+    <loc>https://jaiclubb.app/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/" />
+  </url>
+  <url>
+    <loc>https://jaiclubb.app/hi/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/" />
+  </url>
+
+  <!-- Main review (EN + HI alternates) -->
+  <url>
+    <loc>https://jaiclubb.app/review/jai-club-full-review.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/review/jai-club-full-review.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/review/jai-club-puri-jaankari.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/review/jai-club-full-review.html" />
+  </url>
+  <url>
+    <loc>https://jaiclubb.app/hi/review/jai-club-puri-jaankari.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/review/jai-club-full-review.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/review/jai-club-puri-jaankari.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/review/jai-club-full-review.html" />
+  </url>
+
+  <!-- Game reviews (EN only) -->
+  <url><loc>https://jaiclubb.app/games/wingo.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://jaiclubb.app/games/k3-lottery.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jaiclubb.app/games/5d-lottery.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jaiclubb.app/games/aviator.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://jaiclubb.app/games/mines.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jaiclubb.app/games/dice.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Guides -->
+  <url><loc>https://jaiclubb.app/guides/how-it-works.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jaiclubb.app/guides/safety-tips.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Red flags guide (EN + HI alternates) -->
+  <url>
+    <loc>https://jaiclubb.app/guides/red-flags.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/guides/red-flags.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/guides/khatre-ke-sanket.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/guides/red-flags.html" />
+  </url>
+  <url>
+    <loc>https://jaiclubb.app/hi/guides/khatre-ke-sanket.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/guides/red-flags.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/guides/khatre-ke-sanket.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/guides/red-flags.html" />
+  </url>
+
+  <!-- Blog -->
+  <url><loc>https://jaiclubb.app/blog/</loc><lastmod>2026-05-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Is Jai Club Real or Fake (EN + HI alternates) -->
+  <url>
+    <loc>https://jaiclubb.app/blog/is-jai-club-real-or-fake.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/blog/is-jai-club-real-or-fake.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/blog/jai-club-asli-ya-nakli.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/blog/is-jai-club-real-or-fake.html" />
+  </url>
+  <url>
+    <loc>https://jaiclubb.app/hi/blog/jai-club-asli-ya-nakli.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/blog/is-jai-club-real-or-fake.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/blog/jai-club-asli-ya-nakli.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/blog/is-jai-club-real-or-fake.html" />
+  </url>
+
+  <url><loc>https://jaiclubb.app/blog/color-prediction-explained.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jaiclubb.app/blog/responsible-gaming.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jaiclubb.app/blog/telegram-scam-exposed.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- FAQ (EN + HI alternates) -->
+  <url>
+    <loc>https://jaiclubb.app/faq.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/faq.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/faq.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/faq.html" />
+  </url>
+  <url>
+    <loc>https://jaiclubb.app/hi/faq.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://jaiclubb.app/faq.html" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://jaiclubb.app/hi/faq.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jaiclubb.app/faq.html" />
+  </url>
+
+  <!-- Static / legal -->
+  <url><loc>https://jaiclubb.app/pages/about.html</loc><lastmod>2026-05-22</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://jaiclubb.app/pages/contact.html</loc><lastmod>2026-05-22</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://jaiclubb.app/pages/privacy.html</loc><lastmod>2026-05-22</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://jaiclubb.app/pages/terms.html</loc><lastmod>2026-05-22</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://jaiclubb.app/pages/disclaimer.html</loc><lastmod>2026-05-22</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+
+</urlset>
