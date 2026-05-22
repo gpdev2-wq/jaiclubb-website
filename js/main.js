@@ -139,31 +139,26 @@
         renderStars(0, false);
         status.innerHTML = total > 0
           ? `Currently averaging <strong>${avg.toFixed(1)}/5</strong> from <strong>${fmtCount(total)}</strong> vote${total !== 1 ? 's' : ''}. Click a star to add yours.`
-          : `Be the first to rate this site — click a star above.`;
+          : 'Rate this guide — click a star above.';
       }
     }
 
     async function loadAggregate() {
+      // Only fetch counters that may exist (after a vote). Empty counters return
+      // 400 and clutter the browser console — avoid probing all five on load.
+      const myVote = parseInt(localStorage.getItem(STORE_KEY) || '0', 10);
+      if (!myVote) {
+        updateDisplay(0, 0);
+        return;
+      }
       try {
-        // Trailing slash avoids a 301 redirect round-trip. A counter that has
-        // never been incremented returns 400 ("record not found") — treat as 0.
-        const counts = await Promise.all([1,2,3,4,5].map(n =>
-          fetch(`${API_BASE}/${NAMESPACE}/rating-${n}/`)
-            .then(r => r.ok ? r.json() : null)
-            .then(d => (d && +d.count) || 0)
-            .catch(() => 0)
-        ));
-        const total = counts.reduce((a, b) => a + b, 0);
-        const weighted = counts.reduce((sum, c, i) => sum + c * (i + 1), 0);
-        const avg = total > 0 ? weighted / total : 0;
-        updateDisplay(avg, total);
+        const res = await fetch(`${API_BASE}/${NAMESPACE}/rating-${myVote}/`);
+        const data = res.ok ? await res.json() : null;
+        const count = (data && +data.count) || 1;
+        updateDisplay(myVote, count);
       } catch (e) {
-        if (userVote) {
-          renderStars(userVote, true);
-          status.innerHTML = `You rated <strong>${userVote}/5</strong>. (Live totals temporarily unavailable.)`;
-        } else {
-          status.textContent = 'Rating service unavailable right now — please try later.';
-        }
+        renderStars(myVote, true);
+        status.innerHTML = `Thanks! You rated <strong>${myVote}/5</strong>.`;
       }
     }
 
@@ -196,11 +191,23 @@
     btn.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 15 12 9 18 15"></polyline></svg>';
     document.body.appendChild(btn);
 
-    const toggle = () => {
-      btn.classList.toggle('visible', window.pageYOffset > 320);
+    let visible = false;
+    let scrollTicking = false;
+    const updateVisibility = () => {
+      const show = window.scrollY > 320;
+      if (show !== visible) {
+        visible = show;
+        btn.classList.toggle('visible', show);
+      }
+      scrollTicking = false;
     };
-    window.addEventListener('scroll', toggle, { passive: true });
-    toggle();
+    const onScroll = () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(updateVisibility);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateVisibility();
 
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
