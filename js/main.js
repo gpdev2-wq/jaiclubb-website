@@ -181,9 +181,18 @@
     loadAggregate();
   }
 
-  // ---------- Scroll-to-top button (deferred) ----------
+  // ---------- Scroll-to-top (IntersectionObserver — no scrollY / forced reflow) ----------
   function scrollTopBtn() {
     if (document.querySelector('.scroll-top')) return;
+
+    let sentinel = document.querySelector('.scroll-top-sentinel');
+    if (!sentinel) {
+      sentinel = document.createElement('div');
+      sentinel.className = 'scroll-top-sentinel';
+      sentinel.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(sentinel);
+    }
+
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'scroll-top';
@@ -191,33 +200,23 @@
     btn.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 15 12 9 18 15"></polyline></svg>';
     document.body.appendChild(btn);
 
-    let visible = false;
-    let scrollTicking = false;
-    const updateVisibility = () => {
-      const show = window.scrollY > 320;
-      if (show !== visible) {
-        visible = show;
-        btn.classList.toggle('visible', show);
-      }
-      scrollTicking = false;
-    };
-    const onScroll = () => {
-      if (scrollTicking) return;
-      scrollTicking = true;
-      requestAnimationFrame(updateVisibility);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    updateVisibility();
+    const io = new IntersectionObserver(([entry]) => {
+      btn.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    io.observe(sentinel);
 
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
+  // Batch non-critical DOM work in one frame (fewer layout invalidations)
   runWhenIdle(() => {
-    injectLangSwitch();
-    ratingWidget();
-    scrollTopBtn();
+    requestAnimationFrame(() => {
+      injectLangSwitch();
+      ratingWidget();
+      scrollTopBtn();
+    });
   });
 
   // ---------- Mobile nav ----------
@@ -230,7 +229,8 @@
     });
   }
 
-  // ---------- Smooth-scroll anchor offset for sticky header ----------
+  // ---------- Smooth-scroll anchor offset for sticky header (click-only layout read) ----------
+  const HEADER_OFFSET = 80;
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href').slice(1);
@@ -238,9 +238,11 @@
       const tgt = document.getElementById(id);
       if (!tgt) return;
       e.preventDefault();
-      const top = tgt.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-      history.replaceState(null, '', '#' + id);
+      requestAnimationFrame(() => {
+        const top = tgt.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+        window.scrollTo({ top, behavior: 'smooth' });
+        history.replaceState(null, '', '#' + id);
+      });
     });
   });
 
@@ -339,32 +341,40 @@
     refreshAuth();
   }
 
-  // ---------- Reveal on scroll ----------
-  if ('IntersectionObserver' in window) {
+  // ---------- Reveal on scroll (deferred; skip hero/LCP — no inline opacity on first paint) ----------
+  runWhenIdle(() => {
+    if (!('IntersectionObserver' in window)) return;
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
+          e.target.classList.add('is-revealed');
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.card, .score-card, .callout, figure, .faq details').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(14px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll(
+      '.section .card, .section .callout, .section figure, .section .faq details'
+    ).forEach(el => {
+      el.classList.add('reveal-pending');
       io.observe(el);
     });
-  }
+  });
 
-  // ---------- Reading progress ----------
+  // ---------- Reading progress (rAF-throttled — one layout read per frame) ----------
   const bar = document.getElementById('readingBar');
   if (bar) {
-    document.addEventListener('scroll', () => {
+    let barTicking = false;
+    const updateBar = () => {
       const h = document.documentElement;
-      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      const max = h.scrollHeight - h.clientHeight;
+      const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
       bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      barTicking = false;
+    };
+    document.addEventListener('scroll', () => {
+      if (barTicking) return;
+      barTicking = true;
+      requestAnimationFrame(updateBar);
     }, { passive: true });
   }
 

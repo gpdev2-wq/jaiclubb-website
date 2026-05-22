@@ -313,6 +313,35 @@ a[href^="http"]:not([href*="jaiclubb.app"]):not(.no-ext):hover::after { opacity:
   .scroll-top { bottom: 18px; right: 18px; width: 42px; height: 42px; }
 }
 
+/* Invisible marker for scroll-to-top (no scroll listeners / no forced reflow) */
+.scroll-top-sentinel {
+  position: absolute;
+  top: 320px;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Reveal-on-scroll (class toggled by JS — avoids inline styles on LCP elements) */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal-pending.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Language switcher (auto-injected by JS into .nav-inner) */
 .lang-switch {
   display: inline-flex;
