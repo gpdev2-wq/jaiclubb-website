@@ -6,3 +6,9 @@
 # Saved-page artifacts (not used by the live site)
 assets/images/jaiclub.html
 assets/images/jaiclub_files/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
