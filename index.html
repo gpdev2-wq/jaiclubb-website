@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-300453441"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-300453441');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -40,8 +49,7 @@
   <!-- Performance: critical CSS first; fonts load async (non-render-blocking) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="css/style.css" as="style" />
-  <link rel="preload" href="assets/hero-jai-club-banner.webp" as="image" type="image/webp" fetchpriority="high" />
-  <link rel="preload" href="assets/logo-nav.webp" as="image" type="image/webp" />
+  <link rel="preload" href="assets/logo-nav.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Merriweather:wght@700;900&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Merriweather:wght@700;900&amp;display=swap" /></noscript>
@@ -222,23 +230,8 @@
   <main id="main">
 
     <!-- Hero -->
-    <section class="hero hero--home">
-      <div class="container">
-        <div class="hero-stack">
-          <picture>
-            <source srcset="assets/hero-jai-club-banner.webp" type="image/webp" />
-            <img
-              class="hero-banner-img"
-              src="assets/hero-jai-club-banner.png"
-              alt="Jai Club app home screen with WinGo, Aviator, Mines and UPI wallet — independent 2026 guide"
-              width="720"
-              height="378"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </picture>
-        </div>
-        <div class="hero-grid">
+    <section class="hero">
+      <div class="container hero-grid">
         <div class="hero-content">
 
           <h1>Welcome to <span class="grad-text">Jai Club</span> — Play. Predict. Win.</h1>
@@ -305,7 +298,6 @@
             See Why We Gave This Score →
           </a>
         </aside>
-        </div>
       </div>
     </section>
 
